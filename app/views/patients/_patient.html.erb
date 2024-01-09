@@ -1,0 +1,91 @@
+<div id="<%= dom_id patient %>">
+  <div class="grid grid-cols-3 gap-4 mb-5">
+    <div>
+      <p class="text-xl font-bold text-cyan-700">
+        <%= patient.full_name %>
+      </p>
+      <p class="text-gray-500 text-sm">(MRN: <%= patient.mrn %>) </p>
+    </div>
+  </div>
+  <div class="grid grid-cols-3 gap-4 mb-3">
+    <div>
+      <p class="my-5">
+        <strong class="block font-medium mb-1 text-gray-500">Date of Birth</strong>
+        <%= patient.humanized_dob %>
+      </p>
+    </div>
+    <div>
+      <p class="my-5">
+        <strong class="block font-medium mb-1 text-gray-500">Phone</strong>
+        <%= patient.phone %>
+      </p>
+    </div>
+    <div>
+      <p class="my-5">
+        <strong class="block font-medium mb-1 text-gray-500">Email</strong>
+        <%= patient.email %>
+      </p>
+    </div>
+  </div>
+  <hr>
+  <div class="grid grid-cols-3 gap-4 mt-3">
+    <div>
+      <p class="my-5">
+        <strong class="block font-medium mb-1 text-gray-500">Deceased</strong>
+        <%= patient.humanized_deceased %>
+      </p>
+    </div>
+    <div>
+      <p class="my-5">
+        <strong class="block font-medium mb-1 text-gray-500">Terminated</strong>
+        <%= patient.humanized_terminated %>
+      </p>
+    </div>
+  </div>
+  <div class="grid grid-cols-3 gap-4">
+    <div>
+      <p class="my-5">
+        <strong class="block font-medium mb-1 text-gray-500">Language</strong>
+        <%= patient.language_name %>
+      </p>
+    </div>
+    <div>
+      <p class="my-5">
+        <strong class="block font-medium mb-1 text-gray-500">Sex</strong>
+        <%= patient.sex_name %>
+      </p>
+    </div>
+  </div>
+
+  <% if patient.legal_guardians.present? %>
+    <hr class="mt-3 mb-7">
+    <p>Legal Guardian/s</p>
+    <p class="text-gray-500 text-xs">If patient is underage or unable to make legal decisions.</p>
+    <% @patient.legal_guardians.each do |lg| %>
+      <div class="grid grid-cols-3 gap-4">
+        <div data-controller="modal">
+          <p class="my-5">
+            <strong class="block font-medium mb-1 text-gray-500">Guardian Name</strong>
+            <button class="text-cyan-700" data-action="click->modal#openModal"><%= lg.full_name %></button>
+            <%#= link_to "#{lg.full_name}",  '#', class: "text-cyan-700", data: { action: 'click->modal#openModal' } %>
+          </p>
+          <div data-modal-target="guardian" class="hidden">
+            <%= render 'shared/legal_guardian_modal', legal_guardian: lg %>
+          </div>
+        </div>
+        <div>
+          <p class="my-5">
+            <strong class="block font-medium mb-1 text-gray-500">Relationship</strong>
+            <%= lg.relationship_type %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this patient", patient, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this patient", edit_patient_path(patient), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

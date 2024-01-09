@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mrn: MyString
+  first_name: MyString
+  last_name: MyString
+  middle_initial: MyString
+  date_of_birth: 2023-12-28
+  phone: MyString
+  email: MyString
+  deceased: false
+  terminated: false
+  language: one
+  sex: one
+
+two:
+  mrn: MyString
+  first_name: MyString
+  last_name: MyString
+  middle_initial: MyString
+  date_of_birth: 2023-12-28
+  phone: MyString
+  email: MyString
+  deceased: false
+  terminated: false
+  language: two
+  sex: two

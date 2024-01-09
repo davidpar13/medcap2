@@ -1,0 +1,53 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-xl text-cyan-800">Patients</h1>
+    <%= link_to "New Patient", new_patient_path, class: "rounded-lg py-2 px-2 bg-cyan-800 text-white block font-small" %>
+  </div>
+
+  <div>
+    <%#= render @patients %>
+    <table class="table-auto w-full whitespace-nowrap mt-6 border-b border-gray-200">
+      <thead class="bg-slate-100 text-left">
+      <tr class="border-b border-gray-200">
+        <th class="px-3 py-3">MRN</th>
+        <th class="px-3 py-3">First Name</th>
+        <th class="px-3 py-3">Last Name</th>
+        <th class="px-3 py-3">Date of Birth</th>
+        <th colspan="2" class="px-3 py-3"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @patients.each do |patient| %>
+      <tr class="border-b border-gray-200">
+        <td class="px-3 py-3">
+          <%= patient.mrn %>
+        </td>
+        <td class="px-3 py-3">
+          <%= patient.first_name %>
+        </td>
+        <td class="px-3 py-3">
+          <%= patient.last_name %>
+        </td>
+        <td class="px-3 py-3">
+          <%= patient.humanized_dob %>
+        </td>
+        <td class="px-3 py-3">
+          <%= link_to patient_path(patient) do %>
+            <i class="fa-solid fa-magnifying-glass"></i>
+          <% end %>
+        </td>
+        <td class="px-3 py-3">
+          <%= link_to edit_patient_path(patient) do %>
+            <i class="fa-solid fa-user-pen"></i>
+          <% end %>
+        </td>
+      </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

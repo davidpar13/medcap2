@@ -1,0 +1,47 @@
+<div id="<%= dom_id legal_guardian %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">First name:</strong>
+    <%= legal_guardian.first_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Last name:</strong>
+    <%= legal_guardian.last_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Middle initial:</strong>
+    <%= legal_guardian.middle_initial %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Date of birth:</strong>
+    <%= legal_guardian.date_of_birth %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Phone:</strong>
+    <%= legal_guardian.phone %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Email:</strong>
+    <%= legal_guardian.email %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Relationship:</strong>
+    <%= legal_guardian.relationship_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Patient:</strong>
+    <%= legal_guardian.patient_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this legal guardian", legal_guardian, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this legal guardian", edit_legal_guardian_path(legal_guardian), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

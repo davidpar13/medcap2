@@ -1,0 +1,46 @@
+<div class="nested-form-wrapper bg-slate-100 mt-7 px-3" data-new-record="<%= form.object.new_record? %>">
+  <div class="grid grid-cols-3 gap-4">
+    <div class="my-5">
+      <%= form.label :first_name %>
+      <%= form.text_field :first_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :middle_initial %>
+      <%= form.text_field :middle_initial, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :last_name %>
+      <%= form.text_field :last_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5" data-controller = "flatpickr" >
+      <%= form.label :date_of_birth %>
+      <%= form.date_field :date_of_birth, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", data: { flatpickr_target: "dob" } %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :phone %>
+      <%= form.text_field :phone, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :email %>
+      <%= form.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-4">
+    <div class="my-5" data-controller = "nested_form">
+      <%= form.label :relationship_id %><br>
+      <%= form.select :relationship_id, Relationship.all.collect {|r| [r.relationship_type, r.id]}, { include_blank: "Select Relationship"}, { class: "", data: { nested_form_target: "relationship" } } %>
+    </div>
+  </div>
+
+  <div>
+    <button type="button" data-action="nested-form#remove" class="text-red-500 text-sm pb-3">- Remove Legal Guardian</button>
+  </div>
+
+  <%= form.hidden_field :_destroy %>
+</div>

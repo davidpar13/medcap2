@@ -1,0 +1,107 @@
+<%= form_with(model: patient, class: "contents") do |form| %>
+  <% if patient.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+
+      <ul>
+        <% patient.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <hr class="mt-6">
+  <small class="text-cyan-800">Basic Patient Information</small>
+
+  <div class="grid grid-cols-3 gap-4">
+    <div class="my-5">
+      <%= form.label :mrn %>
+      <%= form.text_field :mrn, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-4">
+    <div class="my-5">
+      <%= form.label :first_name %>
+      <%= form.text_field :first_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :middle_initial %>
+      <%= form.text_field :middle_initial, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :last_name %>
+      <%= form.text_field :last_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5" data-controller = "flatpickr" >
+      <%= form.label :date_of_birth %>
+      <%= form.date_field :date_of_birth, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", data: { flatpickr_target: "dob" } %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :phone %>
+      <%= form.text_field :phone, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :email %>
+      <%= form.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+  </div>
+
+  <hr class="mt-6">
+  <small class="text-cyan-800">Legal Guardians</small>
+  <div data-controller="nested-form" data-nested_form_wrapper_selector_value="nested-form-wrapper">
+    <template data-nested-form-target="template">
+      <%= form.fields_for :legal_guardians, LegalGuardian.new, child_index: 'NEW_RECORD' do |legal_guardian_fields| %>
+        <%= render "legal_guardian_form", form: legal_guardian_fields %>
+      <% end %>
+    </template>
+
+    <%= form.fields_for :legal_guardians do |legal_guardian_fields| %>
+      <%= render "legal_guardian_form", form: legal_guardian_fields %>
+    <% end %>
+    <!-- Inserted elements will be injected before that target. -->
+    <div data-nested-form-target="target"></div>
+
+    <button type="button" data-action="nested-form#add" class="mb-7 mt-7 text-cyan-700">+ Add Legal Guardian</button>
+  </div>
+
+  <hr class="mt-6">
+  <small class="text-cyan-800">Patient Status</small>
+
+  <div class="grid grid-cols-3 gap-4">
+    <div class="my-5">
+      <%= form.label :deceased %>
+      <%= form.check_box :deceased, wrapper: 'toggle', class: "form-checkbox h-5 w-5 text-indigo-600 border-gray-300 focus:ring-indigo-500 focus:border-indigo-500" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :terminated %>
+      <%= form.check_box :terminated, class: "form-checkbox h-5 w-5 text-indigo-600 border-gray-300 focus:ring-indigo-500 focus:border-indigo-500" %>
+    </div>
+  </div>
+
+  <hr class="mt-6">
+  <small class="text-cyan-800">Patient Demographics</small>
+
+  <div class="grid grid-cols-3 gap-4" data-controller = "slim-select">
+    <div class="my-5">
+      <%= form.label :language_id %><br>
+      <%= form.select :language_id, Language.all.collect {|l| [l.language_name, l.id]}, { include_blank: "Select language"}, { class: "", data: { slim_select_target: "language" } } %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :sex_id %>
+      <%= form.select :sex_id, Sex.all.collect {|s| [s.sex_name, s.id]}, { include_blank: "Select sex"}, { class: "", data: { slim_select_target: "sex" } } %>
+    </div>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-2 px-2 bg-cyan-800 text-white inline-block font-small cursor-pointer" %>
+  </div>
+<% end %>

@@ -1,0 +1,17 @@
+<div id="<%= dom_id relationship %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Relationship type:</strong>
+    <%= relationship.relationship_type %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Active:</strong>
+    <%= relationship.active %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this relationship", relationship, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this relationship", edit_relationship_path(relationship), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
