@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  admitted_date: 2024-01-09
+  notes: MyText
+  discharge_date: 2024-01-09
+  diagnosis: one
+  assigned_staff: one
+
+two:
+  admitted_date: 2024-01-09
+  notes: MyText
+  discharge_date: 2024-01-09
+  diagnosis: two
+  assigned_staff: two

@@ -1,0 +1,17 @@
+<div id="<%= dom_id assigned_staff_type %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Type:</strong>
+    <%= assigned_staff_type.type %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Active:</strong>
+    <%= assigned_staff_type.active %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this assigned staff type", assigned_staff_type, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this assigned staff type", edit_assigned_staff_type_path(assigned_staff_type), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

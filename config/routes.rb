@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :admissions
+  resources :diagnoses
+  resources :assigned_staffs
+  resources :assigned_staff_types
   resources :legal_guardians
   resources :patients
   resources :sexes

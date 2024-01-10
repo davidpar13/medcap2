@@ -1,0 +1,27 @@
+<div id="<%= dom_id assigned_staff %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">First name:</strong>
+    <%= assigned_staff.first_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Last name:</strong>
+    <%= assigned_staff.last_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Active:</strong>
+    <%= assigned_staff.active %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Assigned staff type:</strong>
+    <%= assigned_staff.assigned_staff_type_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this assigned staff", assigned_staff, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this assigned staff", edit_assigned_staff_path(assigned_staff), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

@@ -1,0 +1,22 @@
+<div id="<%= dom_id diagnosis %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Code:</strong>
+    <%= diagnosis.code %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Title:</strong>
+    <%= diagnosis.title %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Display:</strong>
+    <%= diagnosis.display %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this diagnosis", diagnosis, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this diagnosis", edit_diagnosis_path(diagnosis), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

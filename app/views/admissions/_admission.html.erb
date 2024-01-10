@@ -1,0 +1,32 @@
+<div id="<%= dom_id admission %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Admitted date:</strong>
+    <%= admission.admitted_date %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Notes:</strong>
+    <%= admission.notes %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Discharge date:</strong>
+    <%= admission.discharge_date %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Diagnosis:</strong>
+    <%= admission.diagnosis_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Assigned staff:</strong>
+    <%= admission.assigned_staff_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this admission", admission, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this admission", edit_admission_path(admission), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

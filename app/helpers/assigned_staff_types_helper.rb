@@ -1,0 +1,2 @@
+module AssignedStaffTypesHelper
+end

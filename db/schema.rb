@@ -10,7 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_29_002144) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_10_024904) do
+  create_table "admissions", force: :cascade do |t|
+    t.date "admitted_date"
+    t.text "notes"
+    t.date "discharge_date"
+    t.integer "diagnosis_id", null: false
+    t.integer "assigned_staff_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "patient_id", null: false
+    t.index ["assigned_staff_id"], name: "index_admissions_on_assigned_staff_id"
+    t.index ["diagnosis_id"], name: "index_admissions_on_diagnosis_id"
+    t.index ["patient_id"], name: "index_admissions_on_patient_id"
+  end
+
+  create_table "assigned_staff_types", force: :cascade do |t|
+    t.string "type"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "assigned_staffs", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.boolean "active"
+    t.integer "assigned_staff_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assigned_staff_type_id"], name: "index_assigned_staffs_on_assigned_staff_type_id"
+  end
+
+  create_table "diagnoses", force: :cascade do |t|
+    t.string "code"
+    t.string "title"
+    t.string "display"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "languages", force: :cascade do |t|
     t.string "language_name"
     t.boolean "active"
@@ -77,6 +116,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_29_002144) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "admissions", "assigned_staffs"
+  add_foreign_key "admissions", "diagnoses"
+  add_foreign_key "admissions", "patients"
+  add_foreign_key "assigned_staffs", "assigned_staff_types"
   add_foreign_key "legal_guardians", "patients"
   add_foreign_key "legal_guardians", "relationships"
   add_foreign_key "patients", "languages"

@@ -1,0 +1,2 @@
+class AssignedStaffType < ApplicationRecord
+end
