@@ -65,6 +65,6 @@ class AdmissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def admission_params
-      params.require(:admission).permit(:admitted_date, :notes, :discharge_date, :diagnosis_id, :assigned_staff_id)
+      params.require(:admission).permit(:admitted_date, :notes, :discharge_date, :diagnosis_id, :assigned_staff_id, :patient_id)
     end
 end

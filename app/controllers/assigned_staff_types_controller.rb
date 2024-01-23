@@ -65,6 +65,6 @@ class AssignedStaffTypesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def assigned_staff_type_params
-      params.require(:assigned_staff_type).permit(:type, :active)
+      params.require(:assigned_staff_type).permit(:staff_type, :active)
     end
 end

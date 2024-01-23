@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  before_action :set_patient, only: %i[ show edit update destroy ]
+  before_action :set_patient, only: %i[ edit update destroy ]
 
   # GET /patients or /patients.json
   def index
@@ -8,6 +8,9 @@ class PatientsController < ApplicationController
 
   # GET /patients/1 or /patients/1.json
   def show
+    @patient = Patient.includes([legal_guardians: :relationship]).find(params[:id]).decorate
+    @admission = @patient.admissions.active_admissions.first
+    @admission = Admission.new unless @admission.present?
   end
 
   # GET /patients/new
@@ -66,6 +69,7 @@ class PatientsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def patient_params
       params.require(:patient).permit(:mrn, :first_name, :last_name, :middle_initial, :date_of_birth, :phone, :email, :deceased, :terminated, :language_id, :sex_id,
-                                      legal_guardians_attributes: [:id, :_destroy, :first_name, :last_name, :middle_initial, :date_of_birth, :phone, :email, :relationship_id])
+                                      legal_guardians_attributes: [:id, :_destroy, :first_name, :last_name, :middle_initial, :date_of_birth, :phone, :email, :relationship_id],
+                                      admissions_attributes: [:id, :admitted_date, :notes, :discharge_date, :diagnosis_id, :assigned_staff_id])
     end
 end

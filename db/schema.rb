@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_10_024904) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_15_215736) do
   create_table "admissions", force: :cascade do |t|
     t.date "admitted_date"
     t.text "notes"
@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_10_024904) do
   end
 
   create_table "assigned_staff_types", force: :cascade do |t|
-    t.string "type"
+    t.string "staff_type"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

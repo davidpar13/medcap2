@@ -11,9 +11,28 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :admitted_date %>
-    <%= form.date_field :admitted_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="grid grid-cols-2 gap-20">
+    <div class="my-5">
+      <%= form.label :admitted_date %>
+      <%= form.date_field :admitted_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :discharge_date %>
+      <%= form.date_field :discharge_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-20" data-controller = "slim-select">
+    <div class="my-5">
+      <%= form.label :diagnosis_id %>
+      <%= form.select :diagnosis_id, Diagnosis.all.collect {|l| [l.display, l.id]}, { include_blank: "Select Diagnosis"}, { class: "", data: { slim_select_target: "diagnosis" } } %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :assigned_staff_id %>
+      <%= form.select :assigned_staff_id, AssignedStaff.all.collect {|l| [l.first_name, l.id]}, { include_blank: "Select Assigned Staff"}, { class: "", data: { slim_select_target: "stafftype" } } %>
+    </div>
   </div>
 
   <div class="my-5">
@@ -21,20 +40,7 @@
     <%= form.text_area :notes, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :discharge_date %>
-    <%= form.date_field :discharge_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :diagnosis_id %>
-    <%= form.text_field :diagnosis_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :assigned_staff_id %>
-    <%= form.text_field :assigned_staff_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+  <%= form.hidden_field :patient_id, value: @patient.id %>
 
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
