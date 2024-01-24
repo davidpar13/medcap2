@@ -28,6 +28,7 @@ class AdmissionsController < ApplicationController
         format.html { redirect_to admission_url(@admission), notice: "Admission was successfully created." }
         format.json { render :show, status: :created, location: @admission }
       else
+        set_patient
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @admission.errors, status: :unprocessable_entity }
       end
@@ -41,6 +42,7 @@ class AdmissionsController < ApplicationController
         format.html { redirect_to admission_url(@admission), notice: "Admission was successfully updated." }
         format.json { render :show, status: :ok, location: @admission }
       else
+        set_patient
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @admission.errors, status: :unprocessable_entity }
       end
@@ -62,6 +64,10 @@ class AdmissionsController < ApplicationController
     def set_admission
       @admission = Admission.find(params[:id])
     end
+
+  def set_patient
+    @patient = Patient.find(params[:patient_id])
+  end
 
     # Only allow a list of trusted parameters through.
     def admission_params

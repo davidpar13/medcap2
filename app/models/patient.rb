@@ -5,7 +5,7 @@ class Patient < ApplicationRecord
   has_many :admissions
 
   accepts_nested_attributes_for :legal_guardians, reject_if: :all_blank, allow_destroy: true
-  accepts_nested_attributes_for :admissions, reject_if: :all_blank
+  # accepts_nested_attributes_for :admissions, reject_if: ->(attributes) { attributes['admitted_date'].blank? }
 
   validate :middle_initial_length
 
