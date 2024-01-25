@@ -8,43 +8,48 @@
           <span class="sr-only">Open main menu</span>
 
           <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
           </svg>
 
           <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
-      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start" data-controller = "navigation">
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start" data-controller="navigation">
         <div class="flex flex-shrink-0 items-center">
           <p class="h-8 w-auto font-bold text-xl text-cyan-800">MedCap</p>
-<!--          <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">-->
+          <!--          <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">-->
         </div>
         <div class="hidden sm:ml-6 sm:block">
-          <div class="flex space-x-4">
-            <%= link_to 'Patients', patients_path, class: "text-gray-700 hover:bg-cyan-800 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
-            <a href="#" class="text-gray-700 hover:bg-cyan-800 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Reports</a>
-            <button class="text-gray-700 hover:bg-cyan-800 hover:text-white rounded-md px-3 py-2 text-sm font-medium" data-action="click->navigation#submenu">App Config</button>
-            <div class="relative inline-block text-left hidden" data-navigation-target = "submenu" >
-              <button class="text-white">Services</button>
-              <div class="origin-top-right absolute right-5 mt-7 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <div class="py-1">
-                  <%= link_to 'Languages', languages_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
-                  <%= link_to 'Sexes', sexes_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
-                  <%= link_to 'Relationships', relationships_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
-                  <!-- Add more dropdown items as needed -->
+          <% if current_user.present? %>
+            <div class="flex space-x-4">
+              <%= link_to 'Patients', patients_path, class: "text-gray-700 hover:bg-cyan-800 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
+              <a href="#" class="text-gray-700 hover:bg-cyan-800 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Reports</a>
+              <button class="text-gray-700 hover:bg-cyan-800 hover:text-white rounded-md px-3 py-2 text-sm font-medium" data-action="click->navigation#submenu">App
+                Config
+              </button>
+              <div class="relative inline-block text-left hidden" data-navigation-target="submenu">
+                <button class="text-white">Services</button>
+                <div class="origin-top-right absolute right-5 mt-7 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <div class="py-1">
+                    <%= link_to 'Languages', languages_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+                    <%= link_to 'Sexes', sexes_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+                    <%= link_to 'Relationships', relationships_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+                    <!-- Add more dropdown items as needed -->
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          <% end %>
         </div>
       </div>
-        <div class="relative ml-3">
+      <div class="relative ml-3">
+        <% if current_user.present? %>
           <div>
             <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: "text-cyan-800" %>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
