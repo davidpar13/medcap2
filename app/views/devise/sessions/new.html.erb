@@ -11,14 +11,14 @@
     <div class="grid grid-cols-1 gap-4 place-items-center">
       <div class="my-5">
         <%= f.label :email %><br/>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
       </div>
     </div>
 
     <div class="grid grid-cols-1 gap-4 place-items-center">
       <div class="my-5">
         <%= f.label :password %><br/>
-        <%= f.password_field :password, autocomplete: "current-password" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
         <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
           <br><%= link_to "Forgot your password?", new_password_path(resource_name), class: "text-sm text-cyan-800" %>
         <% end %>

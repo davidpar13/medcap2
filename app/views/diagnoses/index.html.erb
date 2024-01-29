@@ -4,11 +4,45 @@
   <% end %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Diagnoses</h1>
-    <%= link_to "New diagnosis", new_diagnosis_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <h1 class="font-bold text-xl text-cyan-800">Diagnoses</h1>
+    <%= link_to "New Diagnoses", new_diagnosis_path, class: "rounded-lg py-2 px-2 bg-cyan-800 text-white block font-small" %>
   </div>
 
-  <div id="diagnoses" class="min-w-full">
-    <%= render @diagnoses %>
+  <div>
+    <table class="table-auto w-full  mt-6 border-b border-gray-200">
+      <thead class="bg-slate-100 text-left">
+      <tr class="border-b border-gray-200">
+        <th class="px-3 py-3">Code</th>
+        <th class="px-3 py-3">Title</th>
+        <th class="px-3 py-3">Display</th>
+        <th colspan="2" class="px-3 py-3"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @diagnoses.each do |diagnosis| %>
+        <tr class="border-b border-gray-200">
+          <td class="px-3 py-3">
+            <%= diagnosis.code %>
+          </td>
+          <td class="px-3 py-3">
+            <%= diagnosis.title %>
+          </td>
+          <td class="px-3 py-3">
+            <%= diagnosis.display %>
+          </td>
+          <td class="px-3 py-3">
+            <%= link_to diagnosis_path(diagnosis) do %>
+              <i class="fa-solid fa-magnifying-glass"></i>
+            <% end %>
+          </td>
+          <td class="px-3 py-3">
+            <%= link_to edit_diagnosis_path(diagnosis) do %>
+              <i class="fa-solid fa-user-pen"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

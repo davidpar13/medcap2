@@ -4,11 +4,41 @@
   <% end %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Sexes</h1>
-    <%= link_to "New sex", new_sex_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <h1 class="font-bold text-xl text-cyan-800">Sexes</h1>
+    <%= link_to "New Sex", new_sex_path, class: "rounded-lg py-2 px-2 bg-cyan-800 text-white block font-small" %>
   </div>
 
-  <div id="sexes" class="min-w-full">
-    <%= render @sexes %>
+  <div>
+    <table class="table-auto w-full whitespace-nowrap mt-6 border-b border-gray-200">
+      <thead class="bg-slate-100 text-left">
+      <tr class="border-b border-gray-200">
+        <th class="px-3 py-3">Language Name</th>
+        <th class="px-3 py-3">Active</th>
+        <th colspan="2" class="px-3 py-3"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @sexes.each do |sex| %>
+        <tr class="border-b border-gray-200">
+          <td class="px-3 py-3">
+            <%= sex.sex_name %>
+          </td>
+          <td class="px-3 py-3">
+            <%= sex.active %>
+          </td>
+          <td class="px-3 py-3">
+            <%= link_to sex_path(sex) do %>
+              <i class="fa-solid fa-magnifying-glass"></i>
+            <% end %>
+          </td>
+          <td class="px-3 py-3">
+            <%= link_to edit_sex_path(sex) do %>
+              <i class="fa-solid fa-user-pen"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

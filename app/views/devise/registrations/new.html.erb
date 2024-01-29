@@ -13,7 +13,7 @@
     <div class="grid grid-cols-1 gap-4 place-items-center">
       <div class="my-5">
         <%= f.label :email %><br/>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
       </div>
     </div>
 
@@ -23,14 +23,14 @@
         <% if @minimum_password_length %>
           <em class="text-sm text-gray-500">(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br/>
-        <%= f.password_field :password, autocomplete: "new-password" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
       </div>
     </div>
 
     <div class="grid grid-cols-1 gap-4 place-items-center">
       <div class="my-5">
         <%= f.label :password_confirmation %><br/>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
       </div>
     </div>
 
